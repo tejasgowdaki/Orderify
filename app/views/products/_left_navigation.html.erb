@@ -1,0 +1,77 @@
+<!--Left Part-->
+      <div id="column-left">
+        <!--Bestsellers Part Start-->
+        <div class="box">
+          <div class="box-heading">Bestsellers</div>
+          <div class="box-content">
+            <div class="box-product">
+              <div class="flexslider">
+                <ul class="slides">
+
+                <% Product.order("RANDOM()").limit(5).each do |product| %>
+                    <li>
+                      <div class="slide-inner">
+                        <div class="image">
+                          <a href="<%= product_path(product) %>">
+                            <img src="../image/product/sony_vaio_1-45x45.jpg" alt="Friendly Jewelry" />
+                          </a>
+                        </div>
+                        <div class="name">
+                          <a href="<%= product_path(product) %>"><%= product.name.capitalize %></a>
+                        </div>
+                        <div class="price">INR <%= product.price %></div>
+                        <div class="clear"></div>
+                      </div>
+                    </li>
+
+                  <% end %>
+
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Bestsellers Part End-->
+        <!--Latest Product Start-->
+        <div class="box">
+          <div class="box-heading">Latest</div>
+          <div class="box-content">
+            <div class="box-product">
+              <div class="flexslider">
+                <ul class="slides">
+
+
+                 <% @product.category.products.order('created_at DESC').limit(5).each do |product| %>
+                    <li>
+                      <div class="slide-inner">
+                        <div class="image">
+                          <a href="<%= product_path(product) %>">
+                            <img src="../image/product/sony_vaio_1-45x45.jpg" alt="Friendly Jewelry" />
+                          </a>
+                        </div>
+                        <div class="name">
+                          <a href="<%= product_path(product) %>"><%= product.name.capitalize %></a>
+                        </div>
+                        <div class="price">INR <%= product.price %></div>
+                        <div class="clear"></div>
+                      </div>
+                    </li>
+
+                  <% end %>
+
+
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Latest Product End-->
+        <!--Banner Start-->
+        <div class="banner">
+          <div><a href="#"><img src="../image/product/small-banner1-220x350.jpg" alt="banner" title="banner" /></a></div>
+        </div>
+        <!--Banner End-->
+      </div>
+      <!--Left End-->

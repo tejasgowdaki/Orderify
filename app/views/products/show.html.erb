@@ -1,0 +1,7 @@
+<%= render 'left_navigation' %>
+
+<%= render 'content' %>
+
+<% if user_signed_in? %>
+	<%= render 'recently_viewed' %>
+<% end  %>

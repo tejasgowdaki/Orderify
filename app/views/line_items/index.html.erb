@@ -1,0 +1,122 @@
+<% if @line_items.empty? %>
+
+  <h1> Your cart is empty </h1>
+   <p>Continue Shopping <%= link_to "here", products_path %>
+  <% else %>
+
+ <% sum = 0 %>
+    <% @line_items.each do |line_item| %>
+     
+      <% sum += line_item.quantity * line_item.price %>
+<% end %>
+ 
+<!--Breadcrumb Part Start-->
+        <div class="breadcrumb"> <a href="index.html">Home</a> » <a href="">Shopping Cart</a></div>
+        <!--Breadcrumb Part End-->
+        <h1>Shopping Cart &nbsp;(11.00kg)</h1>
+        <form enctype="multipart/form-data" method="post" action="">
+          <div class="cart-info">
+            <table>
+              <thead>
+                <tr>
+                  <td class="image">Image</td>
+                  <td class="name">Product Name</td>
+                  <td class="model">Category</td>
+                  <td class="quantity">Quantity</td>
+                  <td class="price">Unit Price</td>
+                  <td class="total">Total</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+              <% @line_items.each do |line_item| %>
+                <tr>
+                    <td class="image"><a href="<%= product_path(line_item.product) %>"><img src="../image/product/ipod_classic_1-45x45.jpg" alt="iPad Classic" /></a></td>
+                    <td class="name"><a href="<%= product_path(line_item.product) %>"><%= line_item.product.name.capitalize %></a></td>
+                    <td class="model"><%= line_item.product.category.name.capitalize %></td>
+
+                    <td class="quantity">
+                     <%= form_for line_item do |f| %>
+                     <%= f.text_field :quantity, size: 1, class: "w30" %>
+                      &nbsp;
+                     
+                      <%= f.submit "update", :type => :image, :src=>"../image/update.png" %>
+
+                      <% end %>
+
+                      <%= link_to line_item, method: :delete, data: {confirm: "Are you sure?"} do %>
+                          <img title="Remove" alt="Remove" src="../image/remove.png"></a>
+                      <% end %>
+                      &nbsp;</td>
+
+
+                    <td class="price">INR <%= line_item.product.price %></td>
+                    <td class="total">INR <%= line_item.quantity * line_item.product.price %></td>
+                </tr>
+                <% end %>
+                
+              </tbody>
+            </table>
+          </div>
+        </form>
+        <h2>What would you like to do next?</h2>
+        <div class="content">
+          <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+          <div class="accordion">
+            <div class="accordion-heading">Use Coupon Code</div>
+            <div class="accordion-content">
+              <div class="content" id="coupon">
+                <form enctype="multipart/form-data" method="post" action="">
+                  Enter your coupon here:&nbsp;
+                  <input type="text" value="" name="coupon">
+                  &nbsp;
+                  <input type="submit" class="button" value="Apply Coupon">
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <div class="accordion-heading">Use Gift Voucher</div>
+            <div class="accordion-content">
+              <div class="content" id="voucher">
+                <form enctype="multipart/form-data" method="post" action="">
+                  Enter your gift voucher code here:&nbsp;
+                  <input type="text" value="" name="voucher">
+                  &nbsp;
+                  <input type="submit" class="button" value="Apply Voucher">
+                </form>
+              </div>
+            </div>
+          </div>
+         
+        <div class="cart-total">
+          <table id="total">
+            <tbody>
+             
+              <tr>
+                <td class="right"><b>Total:</b></td>
+                <td class="right">INR <%= sum %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="buttons">
+          <div class="right">
+
+<%= form_for @order do |f| %>
+  <%= f.hidden_field :order_date, value: Date.today %>
+  <%= f.submit "Checkout", class: "button" %>
+<% end %>
+
+
+          </div>
+
+
+
+          <div class="center"><a class="button" href="#">Continue Shopping</a></div>
+        </div>
+      </div>
+      <!--Middle Part End-->
+      <div class="clear"></div>
+
+<% end %>

@@ -1,0 +1,60 @@
+<!--Middle Part Start-->
+      <div id="content">
+        <!--Breadcrumb Part Start-->
+        <div class="breadcrumb"> <a href="/">Home</a> &raquo; <a href=""><%= @category.name.capitalize %></a> </div>
+        <!--Breadcrumb Part End-->
+        <h1><%= @category.name.capitalize %></h1>
+
+        
+        <!--Product List Start-->
+        <div class="product-list">
+          <div>
+
+            <% @category.products.limit(20).each do |product| %>
+
+            <div class="left">
+              <div class="image">
+                <a href="<%= product_path(product) %>">
+                  <img src="../image/product/ipod_classic_1-162x162.jpg" title="iPad Classic" alt="iPad Classic" />
+                </a>
+              </div>
+
+              <div class="name">
+                <a href="<%= product_path(product) %>"><%= product.name.capitalize %></a>
+              </div>
+
+              <div class="description">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto repellendus officia non facere, voluptas dignissimos optio deleniti iste qui eius.
+              </div>
+
+              <div class="price">
+                <span class="price-tax"> INR <%= product.price %> </span> 
+              </div>
+              
+              <div class="rating">
+                <img src="../image/stars-4.png" alt="Based on 1 reviews." />
+              </div>
+
+              <div class="cart">
+
+                <input type="button" class="button" onClick="addToCart('42');" value="Add to Cart">
+
+                <div class="wishlist">
+                  <a onClick="addToWishList('42');">Add to Wish List</a>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <div>
+          <% end %>
+
+          </div>
+        </div>
+        <!--Product List End-->
+        
+      </div>
+      <!--Middle Part End-->
+      <div class="clear"></div>
+    </div>
+Add Comment
