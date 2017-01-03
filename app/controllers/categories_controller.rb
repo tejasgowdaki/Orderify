@@ -13,6 +13,21 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @category = Category.find(params[:id])
+
+    case params[:sort_by]
+    when "1"
+      @products = @category.products.paginate(page: params[:page], per_page: 10).order('name')
+    when "2"
+      @products = @category.products.paginate(page: params[:page], per_page: 10).order('name DESC')    
+    when "3"
+      @products = @category.products.paginate(page: params[:page], per_page: 10).order('price')
+    when "4"
+      @products = @category.products.paginate(page: params[:page], per_page: 10).order('price DESC')
+    else
+      @products = @category.products.paginate(page: params[:page], per_page: 10)
+    end
+
   end
 
   # GET /categories/new

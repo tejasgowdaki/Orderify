@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+
+.activeLink {
+    vertical-align: middle;
+    display: inline-block;
+    border: 1px solid #d45c93;
+    padding: 4px 10px;
+    font-weight: normal;
+    text-decoration: none;
+    color: #fff;
+    background: #d45c93;
+}
