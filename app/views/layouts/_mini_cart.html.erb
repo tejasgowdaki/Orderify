@@ -1,0 +1,53 @@
+<!--Mini Shopping Cart Start-->
+        <section id="cart">
+          <div class="heading">
+            <h4><img width="32" height="32" alt="" src="../image/cart-bg.png"></h4>
+            <a><span id="cart-total"><%= current_user.line_items.size %> item(s) - INR <%= current_user.line_items.sum(:total).round(2) %></span></a> </div>
+          <div class="content">
+            <div class="mini-cart-info">
+
+              <% current_user.line_items.each do |line_item| %>
+                <table>
+                  <tr>
+                    <td class="image">
+                      <a href="#">
+                      <img src="../image/product/lotto-sports-shoes-white-47x47.jpg" alt="Lotto Sports Shoes" title="<%= line_item.product.name %>" />
+                      </a>
+                    </td>
+                    <td class="name"><%= link_to line_item.product.name, product_path(line_item.product) %></td>
+                    <td class="quantity">x&nbsp;<%= line_item.quantity %></td>
+                    <td class="total"><%= line_item.total.round(2) %></td>
+                    <td class="remove">
+                      <%= link_to line_item, method: :delete do %>
+                        <img src="../image/remove-small.png" alt="Remove" title="Remove" /></a>
+                      <% end %>                      
+                    </td>
+                  </tr>
+                </table>
+              <% end %>
+            </div>
+            <div class="mini-cart-total">
+              <table>
+                <!--
+                <tr>
+                  <td class="right"><b>Sub-Total:</b></td>
+                  <td class="right">$601.00</td>
+                </tr>
+                <tr>
+                  <td class="right"><b>Eco Tax (-2.00):</b></td>
+                  <td class="right">$4.00</td>
+                </tr>
+                <tr>
+                  <td class="right"><b>VAT (17.5%):</b></td>
+                  <td class="right">$105.18</td>
+                </tr>-->
+                <tr>
+                  <td class="right"><b>Total:</b></td>
+                  <td class="right"><%= current_user.line_items.sum(:total).round(2) %></td>
+                </tr>
+              </table>
+            </div>
+            <div class="checkout"><a class="button" href="/line_items">View Cart</a> &nbsp; <a class="button" href="/line_items">Checkout</a></div>
+          </div>
+        </section>
+        <!--Mini Shopping Cart End-->

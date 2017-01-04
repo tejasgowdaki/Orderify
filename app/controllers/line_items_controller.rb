@@ -29,7 +29,7 @@ class LineItemsController < ApplicationController
   def create
     @line_item = LineItem.new(line_item_params)
     @line_item.user_id = current_user.id
-    @line_item.price = Product.find(@line_item.product_id).price 
+    @line_item.price = Product.find(@line_item.product_id).price
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to line_items_path, notice: 'Line item was successfully created.' }
@@ -49,7 +49,7 @@ class LineItemsController < ApplicationController
         format.html { redirect_to line_items_path, notice: 'Line item was successfully updated.' }
         format.json { render :show, status: :ok, location: @line_item }
       else
-        format.html { render :edit }
+        format.html { render :back }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
