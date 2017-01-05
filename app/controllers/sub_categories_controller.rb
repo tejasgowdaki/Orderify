@@ -12,6 +12,7 @@ class SubCategoriesController < ApplicationController
   # GET /sub_categories/1.json
   def show
     @products = @sub_category.products.paginate(page: params[:page], per_page: 10)
+    @line_item = LineItem.new
   end
 
   # GET /sub_categories/new

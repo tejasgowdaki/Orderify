@@ -14,6 +14,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
+    @line_item = LineItem.new
 
     case params[:sort_by]
     when "1"

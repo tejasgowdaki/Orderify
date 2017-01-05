@@ -36,8 +36,8 @@
   <div class="main-wrapper">
     <!--Header Part Start-->
     <header id="header">
-      <div class="htop">
-        
+
+      <div class="htop">        
         <% if user_signed_in? %>        
           <div class="links"> 
             <%= link_to "Log Out", destroy_user_session_path, method: :delete %> 
@@ -51,20 +51,21 @@
             <%= link_to "Register", new_user_registration_path %> 
           </div>
         <% end %>
-
-
       </div>
+
       <section class="hsecond">
-        <div id="logo"><a href="/"><img src="../image/logo.png" title="Orderify" alt="Orderify Logo" /></a></div>
+        <div id="logo">
+          <a href="/">
+            <img src="../image/logo.png" title="Orderify" alt="Orderify Logo" />
+          </a>
+        </div>
         <div id="search">
           <div class="button-search"></div>
           <input type="text" name="search" placeholder="Search" value="" />
-        </div>
-        
+        </div>        
         <% if user_signed_in? %>
           <%= render '/layouts/mini_cart' %>
         <% end %>
-
         <div class="clear"></div>
       </section>
       <%= render '/layouts/navigation' %>
@@ -74,12 +75,13 @@
 
     <div id="container">
       <div id="content">
-      <%= alert %>
-      <%= notice %>
-      <%= yield %>
+        <%= alert %>
+        <%= notice %>
+        <%= yield %>
+      </div>
     </div>
-  </div>
     <%= render '/layouts/footer' %>
+  </div>
 </div>
 
 </body>

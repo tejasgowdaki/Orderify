@@ -58,9 +58,13 @@
               </div>
 
               <div class="cart">
-
-                <input type="button" class="button" onClick="addToCart('42');" value="Add to Cart">
-
+                <%= form_for @line_item do |f| %>
+                  <%= f.hidden_field :quantity, value: 1 %>
+                  <%= f.hidden_field :product_id, value: product.id %>
+                  <%= f.hidden_field :price, value: product.price %>   
+                  <%= f.submit "Add To Cart", class: "button"  %>
+                <% end %>
+                
                 <div class="wishlist">
                   <a onClick="addToWishList('42');">Add to Wish List</a>
                 </div>
