@@ -5,14 +5,14 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
- protected
+  protected
 
- def configure_permitted_parameters
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, addresses_attributes: [:id, :street, :city, :pin_code]])
-     devise_parameter_sanitizer.permit(:account_update, keys: [:username])
- end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, addresses_attributes: [:id, :street, :city, :pin_code]])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+  end
 
-  rescue_from CanCan::AccessDenied do 
-  	redirect_to root_path, notice: "Not Authorized"
+  rescue_from CanCan::AccessDenied do
+    redirect_to root_path, notice: 'Not Authorized'
   end
 end

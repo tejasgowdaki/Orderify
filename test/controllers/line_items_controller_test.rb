@@ -5,18 +5,18 @@ class LineItemsControllerTest < ActionController::TestCase
     @line_item = line_items(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:line_items)
   end
 
-  test "should get new" do
+  test 'should get new' do
     get :new
     assert_response :success
   end
 
-  test "should create line_item" do
+  test 'should create line_item' do
     assert_difference('LineItem.count') do
       post :create, line_item: { price: @line_item.price, product_id: @line_item.product_id, quantity: @line_item.quantity, user_id: @line_item.user_id }
     end
@@ -24,22 +24,22 @@ class LineItemsControllerTest < ActionController::TestCase
     assert_redirected_to line_item_path(assigns(:line_item))
   end
 
-  test "should show line_item" do
+  test 'should show line_item' do
     get :show, id: @line_item
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get :edit, id: @line_item
     assert_response :success
   end
 
-  test "should update line_item" do
+  test 'should update line_item' do
     patch :update, id: @line_item, line_item: { price: @line_item.price, product_id: @line_item.product_id, quantity: @line_item.quantity, user_id: @line_item.user_id }
     assert_redirected_to line_item_path(assigns(:line_item))
   end
 
-  test "should destroy line_item" do
+  test 'should destroy line_item' do
     assert_difference('LineItem.count', -1) do
       delete :destroy, id: @line_item
     end

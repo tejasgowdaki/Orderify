@@ -9,8 +9,7 @@ class OrderLineItemsController < ApplicationController
 
   # GET /order_line_items/1
   # GET /order_line_items/1.json
-  def show
-  end
+  def show; end
 
   # GET /order_line_items/new
   def new
@@ -18,8 +17,7 @@ class OrderLineItemsController < ApplicationController
   end
 
   # GET /order_line_items/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /order_line_items
   # POST /order_line_items.json
@@ -62,13 +60,14 @@ class OrderLineItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order_line_item
-      @order_line_item = OrderLineItem.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_line_item_params
-      params.require(:order_line_item).permit(:order_id, :product_id, :price, :quantity)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order_line_item
+    @order_line_item = OrderLineItem.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_line_item_params
+    params.require(:order_line_item).permit(:order_id, :product_id, :price, :quantity)
+  end
 end

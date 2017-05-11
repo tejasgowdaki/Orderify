@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_user! , except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
   load_and_authorize_resource
-  
+
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   # GET /categories
@@ -17,18 +17,17 @@ class CategoriesController < ApplicationController
     @line_item = LineItem.new
 
     case params[:sort_by]
-    when "1"
+    when '1'
       @products = @category.products.paginate(page: params[:page], per_page: 10).order('name')
-    when "2"
-      @products = @category.products.paginate(page: params[:page], per_page: 10).order('name DESC')    
-    when "3"
+    when '2'
+      @products = @category.products.paginate(page: params[:page], per_page: 10).order('name DESC')
+    when '3'
       @products = @category.products.paginate(page: params[:page], per_page: 10).order('price')
-    when "4"
+    when '4'
       @products = @category.products.paginate(page: params[:page], per_page: 10).order('price DESC')
     else
       @products = @category.products.paginate(page: params[:page], per_page: 10)
     end
-
   end
 
   # GET /categories/new
@@ -37,8 +36,7 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /categories
   # POST /categories.json
@@ -81,13 +79,14 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def category_params
-      params.require(:category).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def category_params
+    params.require(:category).permit(:name)
+  end
 end

@@ -1,12 +1,10 @@
 class LineItem < ActiveRecord::Base
-	belongs_to :product
-	belongs_to :user
+  belongs_to :product
+  belongs_to :user
 
-	before_save :calculate_total
+  before_save :calculate_total
 
-
-	def calculate_total
-		self.total = self.quantity * self.price
-	end
-
+  def calculate_total
+    self.total = quantity * price
+  end
 end

@@ -11,8 +11,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1
   # GET /orders/1.json
-  def show
-  end
+  def show; end
 
   # GET /orders/new
   def new
@@ -20,15 +19,14 @@ class OrdersController < ApplicationController
   end
 
   # GET /orders/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /orders
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    @order.order_date = Date.today 
-    @order.user_id = current_user.id 
+    @order.order_date = Date.today
+    @order.user_id = current_user.id
     @order.order_no = "ord-#{Random.rand(100..200)}-#{Random.rand(200..300)}"
     respond_to do |format|
       if @order.save
@@ -66,13 +64,14 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:order_date, :order_no, :user_id, :total)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_params
+    params.require(:order).permit(:order_date, :order_no, :user_id, :total)
+  end
 end

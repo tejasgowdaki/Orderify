@@ -7,7 +7,7 @@ class RolesController < ApplicationController
   # GET /roles.json
   def index
     @roles = Role.all
-  end 
+  end
 
   # GET /roles/1
   # GET /roles/1.json
@@ -21,8 +21,7 @@ class RolesController < ApplicationController
   end
 
   # GET /roles/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /roles
   # POST /roles.json
@@ -65,13 +64,14 @@ class RolesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_role
-      @role = Role.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def role_params
-      params.require(:role).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_role
+    @role = Role.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def role_params
+    params.require(:role).permit(:name)
+  end
 end
